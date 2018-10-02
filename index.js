@@ -1,3 +1,4 @@
+const util = require('util');
 const { TransformModule } = require('pipeline');
 const Jimp = require('jimp');
 
