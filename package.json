@@ -1,0 +1,23 @@
+{
+  "name": "pipeline-image",
+  "version": "1.0.0",
+  "description": "Image transform modules for pipeline",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovsoinc/pipeline-image.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ovsoinc/pipeline-image/issues"
+  },
+  "homepage": "https://github.com/ovsoinc/pipeline-image#readme",
+  "dependencies": {
+    "jimp": "^0.5.3",
+    "pipeline": "git+https://github.com/ovsoinc/pipeline.git"
+  }
+}
