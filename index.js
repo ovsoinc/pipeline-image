@@ -12,7 +12,7 @@ const ImageCropper = TransformModule.create(async (image, x, y, w, h) => {
 });
 
 const ImageWriter = TransformModule.create(async (image, format = 'image/jpeg') => {
-	return await util.promisify(image.getBuffer.bind(image))(format));
+	return await util.promisify(image.getBuffer.bind(image))(format);
 });
 
 module.exports = {
