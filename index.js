@@ -1,19 +1,36 @@
 const util = require('util');
 const { TransformModule } = require('pipeline');
 
-const ImageReader = TransformModule.create(async image => {
-	return module.exports.Jimp.read(image);
-});
+class ImageReader extends TransformModule {
+	async transform(image) {
+		return module.exports.Jimp.read(image);
+	}
+}
 
-const ImageCropper = TransformModule.create(async (image, x, y, w, h) => {
-	image.crop(x - (w / 2), y - (h / 2), w, h);
+class ImageCropper extends TransformModule {
+	async transform(image) {
+		image.crop(this.x - (this.w / 2), this.y - (this.h / 2), this.w, this.h);
 
-	return image;
-});
+		return image;
+	}
+}
 
-const ImageWriter = TransformModule.create(async (image, format = 'image/jpeg') => {
-	return await util.promisify(image.getBuffer.bind(image))(format);
-});
+ImageCropper.inputs = {
+	x: Number,
+	y: Number,
+	w: Number,
+	h: Number
+};
+
+class ImageWriter extends TransformModule {
+	async transform(image) {
+		return await util.promisify(image.getBuffer.bind(image))(this.format);
+	}
+}
+
+ImageWriter.inputs = {
+	format: String
+};
 
 module.exports = {
 	ImageReader,
