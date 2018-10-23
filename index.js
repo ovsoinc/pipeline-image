@@ -2,12 +2,20 @@ const util = require('util');
 const { TransformModule } = require('pipeline');
 
 class ImageReader extends TransformModule {
+	constructor() {
+		super();
+	}
+
 	async transform(image) {
 		return module.exports.Jimp.read(image);
 	}
 }
 
 class ImageCropper extends TransformModule {
+	constructor() {
+		super();
+	}
+
 	async transform(image) {
 		image.crop(this.x - (this.w / 2), this.y - (this.h / 2), this.w, this.h);
 
@@ -23,6 +31,10 @@ ImageCropper.inputs = {
 };
 
 class ImageWriter extends TransformModule {
+	constructor() {
+		super();
+	}
+
 	async transform(image) {
 		return await util.promisify(image.getBuffer.bind(image))(this.format);
 	}
