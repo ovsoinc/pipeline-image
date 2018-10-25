@@ -1,5 +1,6 @@
-const util = require('util');
 const { TransformModule } = require('pipeline');
+
+const promisify = f => (...args) => new Promise((resolve, reject) => f(...args, (err, res) => err ? reject(err) : resolve(res)));
 
 class ImageReader extends TransformModule {
 	constructor() {
@@ -7,7 +8,7 @@ class ImageReader extends TransformModule {
 	}
 
 	async transform(image) {
-		return util.promisify(module.exports.Jimp.read)(image);
+		return promisify(module.exports.Jimp.read)(image);
 	}
 }
 
@@ -36,7 +37,7 @@ class ImageWriter extends TransformModule {
 	}
 
 	async transform(image) {
-		return await util.promisify(image.getBuffer.bind(image))(this.format);
+		return await promisify(image.getBuffer.bind(image))(this.format);
 	}
 }
 
