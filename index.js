@@ -7,7 +7,7 @@ class ImageReader extends TransformModule {
 	}
 
 	async transform(image) {
-		return module.exports.Jimp.read(image);
+		return util.promisify(module.exports.Jimp.read)(image);
 	}
 }
 
