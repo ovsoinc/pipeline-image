@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/ovsoinc/pipeline-image#readme",
   "dependencies": {
-    "jimp": "^0.8.2",
+    "jimp": "^0.12.1",
     "pipeline": "git+https://github.com/ovsoinc/pipeline.git"
   }
 }
